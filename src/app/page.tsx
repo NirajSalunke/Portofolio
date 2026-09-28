@@ -33,7 +33,7 @@ export default function Page() {
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
-              <Avatar className="size-24 md:size-32 border rounded-full shadow-lg ring-4 ring-muted">
+              <Avatar className="size-32 md:size-36 border rounded-full shadow-lg ring-4 ring-muted">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
@@ -119,14 +119,29 @@ export default function Page() {
             <h2 className="text-xl font-bold">Skills</h2>
           </BlurFade>
           <div className="flex flex-wrap gap-2">
-            {DATA.skills.map((skill, id) => (
-              <BlurFade key={skill.name} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                <div className="border bg-background border-border ring-2 ring-border/20 rounded-xl h-8 w-fit px-4 flex items-center gap-2">
-                  {skill.icon && <skill.icon className="size-4 rounded overflow-hidden object-contain" />}
-                  <span className="text-foreground text-sm font-medium">{skill.name}</span>
-                </div>
-              </BlurFade>
-            ))}
+            {DATA.skills.map((skill, id) => {
+              const iconSrc =
+                "customIcon" in skill && skill.customIcon
+                  ? skill.customIcon
+                  : "skillicon" in skill && skill.skillicon
+                    ? `https://skillicons.dev/icons?i=${skill.skillicon}`
+                    : null;
+              return (
+                <BlurFade key={skill.name} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
+                  <div className="border bg-background border-border ring-2 ring-border/20 rounded-xl h-8 w-fit px-3 flex items-center gap-2">
+                    {iconSrc && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={iconSrc}
+                        alt={skill.name}
+                        className="size-5 rounded object-contain"
+                      />
+                    )}
+                    <span className="text-foreground text-sm font-medium">{skill.name}</span>
+                  </div>
+                </BlurFade>
+              );
+            })}
           </div>
         </div>
       </section>
