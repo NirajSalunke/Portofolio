@@ -55,6 +55,11 @@ export const metadata: Metadata = {
     google: "",
     yandex: "",
   },
+  icons: {
+    icon: "/me.jpg",
+    shortcut: "/me.jpg",
+    apple: "/me.jpg",
+  },
 };
 
 export default function RootLayout({
