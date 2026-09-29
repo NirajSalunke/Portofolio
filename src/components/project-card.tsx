@@ -57,12 +57,12 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        "flex flex-row h-full border border-border rounded-xl overflow-hidden hover:ring-2 cursor-pointer hover:ring-muted transition-all duration-200",
+        "flex flex-col md:flex-row h-full border border-border rounded-xl overflow-hidden hover:ring-2 cursor-pointer hover:ring-muted transition-all duration-200",
         className
       )}
     >
       {/* Left: image / video */}
-      <div className="relative shrink-0 w-[460px]">
+      <div className="relative shrink-0 w-full md:w-[460px] min-h-[200px] md:min-h-0">
         <Link
           href={href || "#"}
           target="_blank"
